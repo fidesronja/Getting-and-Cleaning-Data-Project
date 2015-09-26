@@ -23,6 +23,7 @@ For more information about the raw dataset can be found under: www.smartlab.ws
 
 The features (of course excluding the first three) were normalized and bounded within [-1,1], so they are all of the same unit.
 ###Variables:
+
 1. subject:
  Each number identifies the subject who performed the activity. (1-30)
 
@@ -204,7 +205,7 @@ Subsequently, the body linear acceleration and angular velocity were derived in 
 
 Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing Frequency Body Accelerometer -XYZ, Frequency Body Accelerometer Jerk-XYZ, 
 Frequency Body Gyroscope - XYZ, Frequency Body Accelerometer Jerk Magnitude, Frequency Body Gyroscope Magnitude , Frequency Body Gyroscope Jerk Magnitude. 
-(Frequency indicates indicate frequency domain signals). 
+(Frequency indicates frequency domain signals). 
 
 These signals were used to estimate variables of the feature vector for each pattern:  
 '-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.

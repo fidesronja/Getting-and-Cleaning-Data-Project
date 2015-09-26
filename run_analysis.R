@@ -15,8 +15,6 @@ subject_y_x_test<-cbind(subject_y_test,x_test)
 subject_y_train<-cbind(subject_train,y_train)
 subject_y_x_train<-cbind(subject_y_train,x_train)
 subject_y_x<-rbind(subject_y_x_test,subject_y_x_train)
-str(subject_y_x)
-names(subject_y_x)
 ## labeling variables
 subj_names<-c("subject","activity_id")
 feature_names<-make.names(features$V2)
@@ -30,11 +28,12 @@ selected_data <- full_data[, grep("mean|std|subject|activity", names(full_data))
 ##summarizing with means per specified groups
 tidy_data<-selected_data %>% 
         group_by(subject, activity, activity_id) %>%
-        summarize_each(funs(mean)) %>%
-        print
+        summarize_each(funs(mean))
 ## rename the data with readable columnames
 names_readable<-c("subject","activity","activity_id","time_body_accelerometer_mean_x_avg","time_body_accelerometer_mean_y_avg","time_body_accelerometer_mean_z_avg","time_body_accelerometer_std_x_avg","time_body_accelerometer_std_y_avg","time_body_accelerometer_std_z_avg","time_gravity_accelerometer_mean_x_avg","time_gravity_accelerometer_mean_y_avg","time_gravity_accelerometer_mean_z_avg","time_gravity_accelerometer_std_x_avg","time_gravity_accelerometer_std_y_avg","time_gravity_accelerometer_std_z_avg","time_body_accelerometer_jerk_mean_x_avg","time_body_accelerometer_jerk_mean_y_avg","time_body_accelerometer_jerk_mean_z_avg","time_body_accelerometer_jerk_std_x_avg","time_body_accelerometer_jerk_std_y_avg","time_body_accelerometer_jerk_std_z_avg","time_body_gyroscope_mean_x_avg","time_body_gyroscope_mean_y_avg","time_body_gyroscope_mean_z_avg","time_body_gyroscope_std_x_avg","time_body_gyroscope_std_y_avg","time_body_gyroscope_std_z_avg","time_body_gyroscope_jerk_mean_x_avg","time_body_gyroscope_jerk_mean_y_avg","time_body_gyroscope_jerk_mean_z_avg","time_body_gyroscope_jerk_std_x_avg","time_body_gyroscope_jerk_std_y_avg","time_body_gyroscope_jerk_std_z_avg","time_body_accelerometer_magnitude_mean_avg","time_body_accelerometer_magnitude_std_avg","time_gravity_accelerometer_magnitude_mean_avg","time_gravity_accelerometer_magnitude_std_avg","time_body_accelerometer_jerk_magnitude_mean_avg","time_body_accelerometer_jerk_magnitude_std_avg","time_body_gyroscope_magnitude_mean_avg","time_body_gyroscope_magnitude_std_avg","time_body_gyroscope_jerk_magnitude_mean_avg","time_body_gyroscope_jerk_magnitude_std_avg","frequency_body_accelerometer_mean_x_avg","frequency_body_accelerometer_mean_y_avg","frequency_body_accelerometer_mean_z_avg","frequency_body_accelerometer_std_x_avg","frequency_body_accelerometer_std_y_avg","frequency_body_accelerometer_std_z_avg","frequency_body_accelerometer_meanfrequency_x_avg","frequency_body_accelerometer_meanfrequency_y_avg","frequency_body_accelerometer_meanfrequency_z_avg","frequency_body_accelerometer_jerk_mean_x_avg","frequency_body_accelerometer_jerk_mean_y_avg","frequency_body_accelerometer_jerk_mean_z_avg","frequency_body_accelerometer_jerk_std_x_avg","frequency_body_accelerometer_jerk_std_y_avg","frequency_body_accelerometer_jerk_std_z_avg","frequency_body_accelerometer_jerk_meanfrequency_x_avg","frequency_body_accelerometer_jerk_meanfrequency_y_avg","frequency_body_accelerometer_jerk_meanfrequency_z_avg","frequency_body_gyroscope_mean_x_avg","frequency_body_gyroscope_mean_y_avg","frequency_body_gyroscope_mean_z_avg","frequency_body_gyroscope_std_x_avg","frequency_body_gyroscope_std_y_avg","frequency_body_gyroscope_std_z_avg","frequency_body_gyroscope_meanfrequency_x_avg","frequency_body_gyroscope_meanfrequency_y_avg","frequency_body_gyroscope_meanfrequency_z_avg","frequency_body_accelerometer_magnitude_mean_avg","frequency_body_accelerometer_magnitude_std_avg","frequency_body_accelerometer_magnitude_meanfrequency_avg","frequency_bodybody_accelerometer_jerk_magnitude_mean_avg","frequency_bodybody_accelerometer_jerk_magnitude_std_avg","frequency_bodybody_accelerometer_jerk_magnitude_meanfrequency_avg","frequency_bodybody_gyroscope_magnitude_mean_avg","frequency_bodybody_gyroscope_magnitude_std_avg","frequency_bodybody_gyroscope_magnitude_meanfrequency_avg","frequency_bodybody_gyroscope_jerk_magnitude_mean_avg","frequency_bodybody_gyroscope_jerk_magnitude_std_avg","frequency_bodybody_gyroscope_jerk_magnitude_meanfrequency_avg")
 names(tidy_data)<-names_readable
+##writing the data set to a text file
 write.table(tidy_data,"tidy_data.txt",row.names=F)
+##printing the output
 print(tidy_data)
 
